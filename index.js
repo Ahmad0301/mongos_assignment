@@ -15,6 +15,14 @@ const BookSchema = new Schema({
     summary:String
 })
 
+const Book = mongoose.model('Book', BookSchema);
+
+app.post('/books', async(req,res)=>{
+    const data = req.body
+    const object =await Book.create(data);
+    res.json(object)
+})
+
 const port = 3000
 app.listen(port,()=>{
     console.log(`port listening on port ${ port }`)
